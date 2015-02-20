@@ -1,0 +1,97 @@
+<div class="app">
+    <div class="col-xs-3 left panel panel-default">
+        <br> {{data.Profile[0].website}}
+        <br> {{data.Profile[0].email}}
+        <br> {{data.Profile[0].phone | tel}}
+
+        <h3>Skills</h3>
+
+        <span ng-repeat="skill in data.Skills">{{skill.name}} <br></span>
+
+
+    </div>
+
+    <div class="col-xs-9">
+        <div class="jumbotron clearfix">
+            <img ng-src="{{data.Profile[0].picture}}" alt="Profile picture" style="margin-right:15px" class="col-xs-3 img-rounded pull-left">
+            <h2>{{data.Profile[0].first_name}} {{data.Profile[0].last_name}}</h2>
+            <h3>{{data.Profile[0].headline}}</h3>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Summary</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <p class="col-sm-12">{{data.Profile[0].summary}}</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Experience</h4>
+            </div>
+            <div class="panel-body" ng-repeat="job in data.Positions">
+                <div class="col-sm-12">
+                    <div class="col-sm-9">
+                        <h5><b>{{job.title}}</b></h5>
+                        <h5><i>{{job.company_name}}</i></h5>
+                    </div>
+                    <div class="col-sm-3">
+                        {{job.start_date |toISO | date:"MMM &#39;yy"}} to <span ng-if="!job.is_current">{{job.end_date |toISO | date:"MMM &#39;yy"}}</span><span ng-if="job.is_current">Present</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <p class="col-sm-12">{{job.summary}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Education</h4>
+            </div>
+            <div class="panel-body" ng-repeat="edu in data.Education">
+                <div class="col-sm-12">
+                    <div class="col-sm-9">
+                        <h5><b>{{edu.degree}} in {{edu.field_of_study}}</b></h5>
+                        <h5><i>{{edu.school_name}}</i></h5>
+                    </div>
+                    <div class="col-sm-3">
+                        {{edu.start_date |toISO | date:"MMM &#39;yy"}} to {{edu.end_date |toISO | date:"MMM &#39;yy"}}
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <p>{{edu.activities}}</p>
+                        <p>{{edu.notes}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Projects</h4>
+            </div>
+            <div class="panel-body" ng-repeat="pro in data.Projects">
+                <div class="col-sm-12">
+                    <div class="col-sm-9">
+                        <h5><b>{{pro.name}}</b></h5>
+                        <h5><i>{{pro.team}}</i></h5>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+
+                    <p class="col-sm-12">{{pro.summary}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.app{
+	display:flex;	
+}
+
+.left{
+	text-align: center;
+	background-color:#00274c;
+	color:white;
+	font-weight:800;
+}
+
+.left h3{
+	color:#ffcb05;
+	font-weight:800;
+}
+
+.panel-heading{
+	background-color:#00274c !important;
+}
+.panel-heading h4{
+color:#ffcb05 !important;
+font-weight:800;
+}
+
+.list{
+text-align: center;
+cursor: pointer;
+}
