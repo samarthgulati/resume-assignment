@@ -152,6 +152,7 @@ class ProfileAPI {
     }
 
     function getUser(){
+	global $pdo;
         $stmt = $pdo->prepare("SELECT u.first_name, u.last_name, u.email, u.phone, u.headline, u.summary, u.address, u.website, u.picture/*,
                                       e.school_name, e.field_of_study, e.start_date, e.end_date, e.degree, e.activities, e.notes,
                                       s.name,
