@@ -1,31 +1,45 @@
 var app = angular.module('app', ['ngRoute']);
 
 app.config(function($routeProvider) {
-    $routeProvider
-
-    // route for the about page
-    .when('/detail/:email', {
+    $routeProvider.when('/detail/:email', {
         templateUrl: 'views/detail.html',
         controller: 'mainController'
-    })// route for the home page
-        .when('/', {
+    }).when('/skill/:skill', {
+        templateUrl: 'views/skill.html',
+        controller: 'skillController'
+    }).when('/', {
         templateUrl: 'views/list.html',
         controller: 'listController'
     });
 })
 
 
-.controller('mainController',['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('mainController',['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
     $http.get('detail.php?email='+$routeParams.email).success(function(data, status) {
         $scope.data = data || "Request failed";
         console.log($scope.data);
     });
+    
+    $scope.pplWithSkill = function(skill){
+        $location.path('/skill/'+ skill);
+    };
 
 }]).controller('listController',['$scope', '$http', '$location', function($scope, $http, $location) {
     $http.get('list.php').success(function(data, status) {
         $scope.users = data || "Request failed";
         console.log($scope.users);
+    });
+
+    $scope.detail = function (email) {
+        $location.path('/detail/'+ email);
+    };
+
+}]).controller('skillController',['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+    $scope.skill = $routeParams.skill;
+    $http.get('skill.php?skill='+$routeParams.skill).success(function(data, status) {
+        $scope.ppl = data || "Request failed";
+        console.log($scope.ppl);
     });
 
     $scope.detail = function (email) {
