@@ -6,7 +6,7 @@
 
         <h3>Skills</h3>
 
-        <span ng-repeat="skill in data.Skills">{{skill.name}} <br></span>
+        <span ng-repeat="skill in data.Skills"><div style="cursor:pointer;" ng-click="pplWithSkill(skill.name)">{{skill.name}}</div> </span>
 
 
     </div>
